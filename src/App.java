@@ -121,7 +121,7 @@ public class App {
      * Nível de complexidade: 4 de 10
      */
     static char obterCaractereUsuario(Scanner teclado) {
-        // TODO 11: Implementar método conforme explicação
+        // ✅TODO 11: Implementar método conforme explicação
         System.out.print("Escolha seu caractere entre os seguintes: " + CARACTERES_IDENTIFICADORES_ACEITOS);
         char caractereUsuario = teclado.next().charAt(0);
         if (CARACTERES_IDENTIFICADORES_ACEITOS.indexOf(caractereUsuario) == -1) {
@@ -145,7 +145,7 @@ public class App {
      * Nível de complexidade: 4 de 10
      */
     static char obterCaractereComputador(char caractereUsuario, Scanner teclado) {
-        // TODO 12: Implementar método conforme explicação
+        // ✅TODO 12: Implementar método conforme explicação
         System.out.println("Escolha o caractere para o computador entre os seguintes: "
                 + CARACTERES_IDENTIFICADORES_ACEITOS.replace(String.valueOf(caractereUsuario), ""));
         char caractereComputador = teclado.next().charAt(0);
@@ -169,6 +169,7 @@ public class App {
      */
     static boolean jogadaValida(String posicoesLivres, int linha, int coluna) {
         // TODO 13: Implementar método conforme explicação
+        return posicoesLivres.contains(linha + "" + coluna);    
     }
 
     /*
@@ -283,6 +284,16 @@ public class App {
      */
     static String retornarPosicoesLivres() {
         // TODO 19: Implementar método conforme explicação
+        String posicoesLivres = "";
+        for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+            for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+                if (tabuleiro[i][j] == ' ') {
+                    posicoesLivres += i + "" + j + ";";
+                }
+            }
+        }
+
+        return posicoesLivres;
     }
 
     /*
