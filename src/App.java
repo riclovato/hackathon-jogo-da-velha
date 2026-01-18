@@ -168,7 +168,7 @@ public class App {
      * Nível de complexidade: 3 de 10
      */
     static boolean jogadaValida(String posicoesLivres, int linha, int coluna) {
-        // TODO 13: Implementar método conforme explicação
+        // ✅TODO 13: Implementar método conforme explicação
         return posicoesLivres.contains(linha + "" + coluna);    
     }
 
@@ -198,7 +198,28 @@ public class App {
      * Nível de complexidade: 5 de 10
      */
     static int[] obterJogadaUsuario(String posicoesLivres, Scanner teclado) {
-        // TODO 14: Implementar método conforme explicação
+        // ✅TODO 14: Implementar método conforme explicação
+        System.out.print("Digite a linha e a coluna separados por espaço (ex: 1 2): ");
+        String input = teclado.nextLine();
+        String[] parts = input.split(" ");
+        if (parts.length != 2) {
+            System.out.println("Entrada inválida. Tente novamente.");
+            return obterJogadaUsuario(posicoesLivres, teclado);
+        }
+        int linha, coluna;
+        try {
+            linha = Integer.parseInt(parts[0]) - 1;
+            coluna = Integer.parseInt(parts[1]) - 1;
+        } catch (NumberFormatException e) {
+            System.out.println("Entrada inválida. Tente novamente.");
+            return obterJogadaUsuario(posicoesLivres, teclado);
+        }
+        if (!jogadaValida(posicoesLivres, linha, coluna)) {
+            System.out.println("Jogada não permitida. Tente novamente.");
+            return obterJogadaUsuario(posicoesLivres, teclado);
+        }
+        return new int[] { linha, coluna };
+
     }
 
     /*
@@ -225,7 +246,11 @@ public class App {
      * Nível de complexidade: 6 de 10
      */
     static int[] obterJogadaComputador(String posicoesLivres, Scanner teclado) {
-        // TODO 15: Implementar método conforme explicação
+        //✅ TODO 15: Implementar método conforme explicação
+        String[] parts = posicoesLivres.split(";");
+        Random random = new Random();
+        int index = random.nextInt(parts.length);
+        return converterJogadaStringParaVetorInt(parts[index]);
     }
 
     /*
@@ -238,7 +263,11 @@ public class App {
      * Nível de complexidade: 4 de 10
      */
     static int[] converterJogadaStringParaVetorInt(String jogada) {
-        // TODO 16: Implementar método conforme explicação
+        // ✅TODO 16: Implementar método conforme explicação
+        int[] jogadaInt = new int[2];
+        jogadaInt[0] = Character.getNumericValue(jogada.charAt(0));
+        jogadaInt[1] = Character.getNumericValue(jogada.charAt(1));
+        return jogadaInt;
     }
 
     /*
@@ -253,6 +282,7 @@ public class App {
      */
     static void processarVezUsuario(char caractereUsuario) {
         // TODO 17: Implementar método conforme explicação
+
     }
 
     /*
@@ -381,7 +411,8 @@ public class App {
      */
     static void atualizaTabuleiro(int[] jogada, char caractereJogador) {
         // TODO 27: Implementar método conforme explicação
-
+        tabuleiro[jogada[0]][jogada[1]] = caractereJogador;
+        
     }
 
     /*
