@@ -343,7 +343,11 @@ public class App {
      * Nível de complexidade: 8 de 10 se o tabuleiro dinâmico
      */
     static boolean teveGanhador(char caractereJogador) {
-        // TODO 20: Implementar método conforme explicação
+        // ✅TODO 20: Implementar método conforme explicação
+        return teveGanhadorLinha(tabuleiro, caractereJogador) ||
+                teveGanhadorColuna(tabuleiro, caractereJogador) ||
+                teveGanhadorDiagonalPrincipal(tabuleiro, caractereJogador) ||
+                teveGanhadorDiagonalSecundaria(tabuleiro, caractereJogador);
     }
 
     /*
@@ -357,20 +361,77 @@ public class App {
      * Nível de complexidade: 4 de 10 se o tabuleiro for fixo 3x3
      * Nível de complexidade: 8 de 10 se o tabuleiro dinâmico
      */
-    static boolean teveGanhadorLinha(char caractereJogador) {
-        // TODO 21: Implementar método conforme explicação
+    static boolean teveGanhadorLinha(char[][] tabuleiro, char caractereJogador) {
+        // ✅TODO 21: Implementar método conforme explicação
+        boolean ganhou = true;
+        for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+            ganhou = true;
+            for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+                if (tabuleiro[i][j] != caractereJogador) {
+                    ganhou = false;
+                    break;
+                }
+
+            }
+            if (ganhou) {
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
-    static boolean teveGanhadorColuna(char caractereJogador) {
-        // TODO 22: Implementar método conforme explicação
+    static boolean teveGanhadorColuna(char[][] tabuleiro, char caractereJogador) {
+        // ✅TODO 22: Implementar método conforme explicação
+
+        boolean ganhou = true;
+        for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+            ganhou = true;
+            for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+                if (tabuleiro[j][i] != caractereJogador) {
+                    ganhou = false;
+                    break;
+                }
+
+            }
+            if (ganhou) {
+                return true;
+            }
+
+        }
+        return false;
+
     }
 
-    static boolean teveGanhadorDiagonalPrincipal(char caractereJogador) {
-        // TODO 23: Implementar método conforme explicação
+    static boolean teveGanhadorDiagonalPrincipal(char[][] tabuleiro, char caractereJogador) {
+        // ✅TODO 23: Implementar método conforme explicação
+        boolean ganhou = true;
+        for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+            ganhou = true;
+            if (tabuleiro[i][i] != caractereJogador) {
+                ganhou = false;
+                break;
+            }
+        }
+
+        if (ganhou) {
+            return true;
+        }
+        return false;
     }
 
-    static boolean teveGanhadorDiagonalSecundaria(char caractereJogador) {
-        // TODO 24: Implementar método conforme explicação
+    static boolean teveGanhadorDiagonalSecundaria(char[][] tabuleiro, char caractereJogador) {
+        // ✅TODO 24: Implementar método conforme explicação
+        boolean ganhou = true;
+        for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+            int j = TAMANHO_TABULEIRO - 1 - i;
+            if (tabuleiro[i][j] != caractereJogador) {
+                ganhou = false;
+                break;
+            }
+        }
+        return ganhou;
     }
 
     /*
