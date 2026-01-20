@@ -169,7 +169,7 @@ public class App {
      */
     static boolean jogadaValida(String posicoesLivres, int linha, int coluna) {
         // ✅TODO 13: Implementar método conforme explicação
-        return posicoesLivres.contains(linha + "" + coluna);    
+        return posicoesLivres.contains(linha + "" + coluna);
     }
 
     /*
@@ -246,7 +246,7 @@ public class App {
      * Nível de complexidade: 6 de 10
      */
     static int[] obterJogadaComputador(String posicoesLivres, Scanner teclado) {
-        //✅ TODO 15: Implementar método conforme explicação
+        // ✅ TODO 15: Implementar método conforme explicação
         String[] parts = posicoesLivres.split(";");
         Random random = new Random();
         int index = random.nextInt(parts.length);
@@ -380,7 +380,17 @@ public class App {
      * Nível de complexidade: 3 de 10
      */
     static void limparTela() {
-        // TODO 25: Implementar método conforme explicação
+        // ✅TODO 25: Implementar método conforme explicação
+        try {
+            String os = System.getProperty("os.name").toLowerCase();
+            if (os.contains("windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao limpar o console: " + e.getMessage());
+        }
     }
 
     /*
@@ -392,9 +402,24 @@ public class App {
      * Nível de complexidade: 4 de 10
      */
     static void exibirTabuleiro() {
-        // TODO 26: Implementar método conforme explicação
+        // ✅TODO 26: Implementar método conforme explicação
         // execute no início deste método a chamada ao método limparTela
         // para garantir que seja exibido o tabuleiro sem nenhum conteúdo antes dele.
+        limparTela();
+        System.out.println("Tabuleiro:");
+        for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+            for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+                System.out.print(" " + tabuleiro[i][j] + " ");
+                if (j < TAMANHO_TABULEIRO - 1) {
+                    System.out.print("|");
+                }
+            }
+            System.out.println();
+            if (i < TAMANHO_TABULEIRO - 1) {
+                System.out.println("---+---+---");
+            }
+        }
+
     }
 
     /*
@@ -412,7 +437,7 @@ public class App {
     static void atualizaTabuleiro(int[] jogada, char caractereJogador) {
         // TODO 27: Implementar método conforme explicação
         tabuleiro[jogada[0]][jogada[1]] = caractereJogador;
-        
+
     }
 
     /*
