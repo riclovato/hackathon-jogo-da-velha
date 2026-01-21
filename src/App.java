@@ -124,6 +124,7 @@ public class App {
         // ✅TODO 11: Implementar método conforme explicação
         System.out.print("Escolha seu caractere entre os seguintes: " + CARACTERES_IDENTIFICADORES_ACEITOS);
         char caractereUsuario = teclado.next().charAt(0);
+        teclado.nextLine();
         if (CARACTERES_IDENTIFICADORES_ACEITOS.indexOf(caractereUsuario) == -1) {
             System.out.println("Caractere inválido. Tente novamente.");
             return obterCaractereUsuario(teclado);
@@ -149,6 +150,7 @@ public class App {
         System.out.println("Escolha o caractere para o computador entre os seguintes: "
                 + CARACTERES_IDENTIFICADORES_ACEITOS.replace(String.valueOf(caractereUsuario), ""));
         char caractereComputador = teclado.next().charAt(0);
+        teclado.nextLine();
         if (CARACTERES_IDENTIFICADORES_ACEITOS.indexOf(caractereComputador) == -1
                 || caractereComputador == caractereUsuario) {
             System.out.println("Caractere inválido. Tente novamente.");
@@ -282,7 +284,12 @@ public class App {
      */
     static void processarVezUsuario(char caractereUsuario) {
         // TODO 17: Implementar método conforme explicação
+        System.out.println("Vez do usuário jogar.");
+        String posicoesLivres = retornarPosicoesLivres();
+        int [] jogada = obterJogadaUsuario(posicoesLivres, teclado);
+        atualizaTabuleiro(jogada, caractereUsuario);
 
+    
     }
 
     /*
@@ -299,6 +306,10 @@ public class App {
      */
     static void processarVezComputador(char caractereComputador) {
         // TODO 18: Implementar método conforme explicação
+        System.out.println("Vez do computador jogar.");
+        String posicoesLivres = retornarPosicoesLivres();
+        int [] jogada = obterJogadaComputador(posicoesLivres, teclado);
+        atualizaTabuleiro(jogada, caractereComputador);
     }
 
     /*
@@ -496,7 +507,7 @@ public class App {
      * Nível de complexidade: 3 de 10
      */
     static void atualizaTabuleiro(int[] jogada, char caractereJogador) {
-        // TODO 27: Implementar método conforme explicação
+        // ✅TODO 27: Implementar método conforme explicação
         tabuleiro[jogada[0]][jogada[1]] = caractereJogador;
 
     }
@@ -509,7 +520,16 @@ public class App {
      * Nível Complexidade: 2 de 10
      */
     static void exibirVitoriaComputador() {
-        // TODO 28: Implementar método conforme explicação
+        // ✅TODO 28: Implementar método conforme explicação
+        System.out.println("O computador venceu!");
+        System.out.println("  ___________");
+        System.out.println(" /           \\");
+        System.out.println("/  O     O    \\");
+        System.out.println("\\  \\   /  /   /");
+        System.out.println(" \\  \\_/  /   /");
+        System.out.println("  \\_____/   /");
+        System.out.println("   |     |  |");
+        System.out.println("   |     |__|");
     }
 
     /*
@@ -520,7 +540,17 @@ public class App {
      * Nível Complexidade: 2 de 10
      */
     static void exibirVitoriaUsuario() {
-        // TODO 29: Implementar método conforme explicação
+        // ✅TODO 29: Implementar método conforme explicação
+        System.out.println("O usuário venceu!");
+        System.out.println("  ___________");
+        System.out.println(" /           \\");
+        System.out.println("/  ^     ^    \\"); 
+        System.out.println("\\  \\   /  /   /");
+        System.out.println(" \\  \\_/  /   /");
+        System.out.println("  \\_____/   /");
+        System.out.println("   |     |  |");
+        System.out.println("   |     |__|");
+
     }
 
     /*
@@ -531,7 +561,16 @@ public class App {
      * Nível Complexidade: 2 de 10
      */
     static void exibirEmpate() {
-        // TODO 30: Implementar método conforme explicação
+        // ✅TODO 30: Implementar método conforme explicação
+        System.out.println("Ocorreu empate!");
+        System.out.println("  ___________");
+        System.out.println(" /           \\");
+        System.out.println("/     0 X 0   \\");
+        System.out.println("\\             /");
+        System.out.println(" \\           /");
+        System.out.println("  \\_________/ ");
+        
+
     }
 
     /*
@@ -543,7 +582,8 @@ public class App {
      * Nível de complexidade: 3 de 10
      */
     static boolean teveEmpate() {
-        // TODO 31: Implementar método conforme explicação
+        // ✅TODO 31: Implementar método conforme explicação
+        return retornarPosicoesLivres().isEmpty();
 
     }
 
@@ -556,7 +596,9 @@ public class App {
      * Nível de complexidade: 3 de 10
      */
     static boolean sortearValorBooleano() {
-        // TODO 32: Implementar método conforme explicação
+        // ✅TODO 32: Implementar método conforme explicação
+        Random random = new Random();
+        return random.nextBoolean();
     }
 
 }
